@@ -28,6 +28,9 @@ app = Flask(__name__)
 
 @app.route("/get_group", methods=["GET"])
 def get_group():
+    supabase = get_supabase()
+    if not supabase:
+        return jsonify({"error": "SUPABASE_URL and SUPABASE_KEY are not configured"}), 500
     resp = supabase.table("catalog_group").select("id,name").execute()
     if getattr(resp, "error", None):
         # Debug: print error from Supabase
