@@ -2,6 +2,7 @@ import os
 from flask import Flask, request, jsonify
 from supabase import create_client
 from dotenv import load_dotenv
+import serverless_wsgi
 
 load_dotenv()
 
